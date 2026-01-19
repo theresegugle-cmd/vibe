@@ -1,11 +1,126 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <title>TEST</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe Åskøy – Live</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF8FB6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Vibe">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #FFD1A3, #FF8FB6);
+      text-align: center;
+      padding-bottom: 80px;
+    }
+
+    header {
+      padding: 20px;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .live-btn {
+      background: #FF4D8D;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 16px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px auto;
+      display: block;
+    }
+
+    .video {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      margin: 12px;
+    }
+
+    .video iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-radius: 12px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .bottom-nav button {
+      background: none;
+      border: none;
+      font-size: 14px;
+      color: #555;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-nav span {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  </style>
 </head>
-<body style="background:pink; text-align:center; padding-top:50px;">
-  <h1>✅ HTML FUNGERER</h1>
-  <p>GitHub Pages via /docs fungerer.</p>
+
+<body>
+
+  <header>VIBE LIVE</header>
+
+  <button class="live-btn" onclick="scrollToLive()">🔴 SE LIVE</button>
+
+  <div class="video">
+    <iframe
+      src="https://www.youtube.com/embed/live_stream?channel=UC5bCGMPx1WhM3EgK8f6SJlw"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <nav class="bottom-nav">
+    <button onclick="scrollToTop()">🏠<span>Hjem</span></button>
+    <button onclick="scrollToLive()">🔴<span>Live</span></button>
+    <button onclick="showInfo()">ℹ️<span>Info</span></button>
+  </nav>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToLive() {
+      document.querySelector('.video').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showInfo() {
+      alert(
+        'Vibe Åskøy\n\n' +
+        '🔴 Live vises automatisk når vi sender\n' +
+        '📺 Ellers siste video'
+      );
+    }
+  </script>
+
 </body>
 </html>
