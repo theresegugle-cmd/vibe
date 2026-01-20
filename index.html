@@ -44,19 +44,14 @@ section.active{display:block;}
   border-radius:12px;
 }
 .staff-name{text-align:center;font-weight:bold;margin-top:6px;}
-
-<!-- SPILL -->
 <section id="game">
-    <div class="card">
+  <div class="card">
     <h3>🎮 Hår-Match</h3>
-    <p>Finn like ikoner – perfekt mens du venter ✂️</p>
+    <p>Finn like ikoner mens du venter ✂️</p>
 
-    <div id="gameBoard" style="
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
-      margin-top:12px;
-    "></div>
+    <div id="gameBoard"
+         style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;">
+    </div>
 
     <p id="moves" style="margin-top:12px;font-weight:bold;">
       Trekk: 0
@@ -69,13 +64,12 @@ section.active{display:block;}
       border-radius:20px;
       background:#FF4D8D;
       color:white;
-      font-weight:bold;
-    ">
+      font-weight:bold;">
       🔄 Start på nytt
     </button>
   </div>
 </section>
-  
+
 .bottom-nav{
   position:fixed;bottom:0;left:0;width:100%;
   height:64px;background:#fff;border-top:1px solid #ddd;
@@ -273,3 +267,4 @@ function resetGame() {
 /* Start spillet når siden er lastet */
 document.addEventListener("DOMContentLoaded", setupGame);
 </script>
+
