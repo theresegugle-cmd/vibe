@@ -1,127 +1,158 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vibe Askøy – Live</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Åskøy</title>
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#FF8FB6">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Vibe">
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#FFD1A3,#FF8FB6);
+  padding-bottom:80px;
+}
+header{
+  text-align:center;
+  padding:16px;
+  font-size:24px;
+  font-weight:bold;
+}
+section{display:none;padding:16px;}
+section.active{display:block;}
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:12px;
+}
+.video{position:relative;padding-bottom:56.25%;height:0;}
+.video iframe{position:absolute;width:100%;height:100%;border-radius:12px;}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #FFD1A3, #FF8FB6);
-      text-align: center;
-      padding-bottom: 80px;
-    }
+.price-row{
+  display:flex;justify-content:space-between;
+  border-bottom:1px solid #eee;padding:8px 0;
+}
 
-    header {
-      padding: 20px;
-      font-size: 26px;
-      font-weight: bold;
-    }
+.staff{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.staff img{
+  width:100%;
+  border-radius:12px;
+}
+.staff-name{text-align:center;font-weight:bold;margin-top:6px;}
 
-    .live-btn {
-      background: #FF4D8D;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 16px 28px;
-      font-size: 18px;
-      font-weight: bold;
-      margin: 20px auto;
-      display: block;
-    }
-
-    .video {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      margin: 12px;
-    }
-
-    .video iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-      border-radius: 12px;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 64px;
-      background: #fff;
-      border-top: 1px solid #ddd;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-
-    .bottom-nav button {
-      background: none;
-      border: none;
-      font-size: 14px;
-      color: #555;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .bottom-nav span {
-      font-size: 12px;
-      margin-top: 4px;
-    }
-  </style>
+.bottom-nav{
+  position:fixed;bottom:0;left:0;width:100%;
+  height:64px;background:#fff;border-top:1px solid #ddd;
+  display:flex;justify-content:space-around;align-items:center;
+}
+.bottom-nav button{
+  background:none;border:none;font-size:12px;color:#555;
+}
+.bottom-nav button.active{
+  color:#FF4D8D;font-weight:bold;
+}
+</style>
 </head>
 
 <body>
 
-  <header>VIBE LIVE</header>
+<header>VIBE ÅSKØY</header>
 
-  <button class="live-btn" onclick="scrollToLive()">🔴 SE LIVE</button>
+<!-- LIVE -->
+<section id="live" class="active">
+<div class="card">
+<h3>🔴 Live</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/live_stream?channel=UC5bCGMPx1WhM3EgK8f6SJlw" allowfullscreen></iframe>
+</div>
+<p>Live vises automatisk når vi sender.</p>
+</div>
 
-  <div class="video">
-    <iframe
-      src="https://www.youtube.com/embed/live_stream?channel=UC5bCGMPx1WhM3EgK8f6SJlw"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
-  </div>
+<div class="card">
+<h3>🔔 Pushvarsel</h3>
+<p>Få beskjed når vi går live.</p>
+<button onclick="alert('Pushvarsler aktiveres i neste steg')" style="padding:12px;border-radius:20px;border:none;background:#FF4D8D;color:#fff;">Aktiver varsler</button>
+</div>
+</section>
 
-  <nav class="bottom-nav">
-    <button onclick="scrollToTop()">🏠<span>Hjem</span></button>
-    <button onclick="scrollToLive()">🔴<span>Live</span></button>
-    <button onclick="showInfo()">ℹ️<span>Info</span></button>
-  </nav>
+<!-- PRISER -->
+<section id="prices">
+<div class="card">
+<h3>💇‍♀️ Prisliste</h3>
+<div class="price-row"><span>Dameklipp</span><span>fra 890 kr</span></div>
+<div class="price-row"><span>Herreklipp</span><span>fra 690 kr</span></div>
+<div class="price-row"><span>Barneklipp</span><span>fra 490 kr</span></div>
+<div class="price-row"><span>Farge</span><span>fra 1290 kr</span></div>
+</div>
+</section>
 
-  <script>
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+<!-- TILBUD -->
+<section id="offers">
+<div class="card">
+<h3>🏷️ Tilbud</h3>
+<p><strong>Studentklipp:</strong> –10 % mandag–onsdag</p>
+<p><strong>Farge + klipp:</strong> fra 1990 kr</p>
+</div>
+</section>
 
-    function scrollToLive() {
-      document.querySelector('.video').scrollIntoView({ behavior: 'smooth' });
-    }
+<!-- ANSATTE -->
+<section id="staff">
+<div class="card">
+<h3>👩‍🎤 Våre ansatte</h3>
+<div class="staff">
+<div>
+<img src="ansatt1.jpg">
+<div class="staff-name">Andrea – Frisør</div>
+</div>
+<div>
+<img src="ansatt2.jpg">
+<div class="staff-name">Anna – Frisør</div>
+</div>
+</div>
+<p style="font-size:13px;">(Du kan legge til flere ansatte)</p>
+</div>
+</section>
 
-    function showInfo() {
-      alert(
-        'Vibe Askøy\n\n' +
-        '🔴 Live vises automatisk når vi sender\n' +
-        '📺 Ellers siste video'
-      );
-    }
-  </script>
+<!-- KONTAKT -->
+<section id="contact">
+<div class="card">
+<h3>📍 Kontakt & åpningstider</h3>
+<p><strong>Adresse:</strong> Åskøy (legg inn full adresse)</p>
+<p><strong>Telefon:</strong> 99 99 99 99</p>
+<p><strong>Åpningstider:</strong><br>
+Man–Fre 09–17<br>
+Lørdag 10–15</p>
+
+<a href="https://maps.google.com/?q=Vibe+Åskøy" target="_blank">
+<button style="margin-top:10px;padding:12px;border-radius:20px;border:none;background:#FF4D8D;color:#fff;">
+🗺️ Åpne veibeskrivelse
+</button>
+</a>
+</div>
+</section>
+
+<!-- MENY -->
+<nav class="bottom-nav">
+<button onclick="show('live')" class="active">Live</button>
+<button onclick="show('prices')">Priser</button>
+<button onclick="show('offers')">Tilbud</button>
+<button onclick="show('staff')">Ansatte</button>
+<button onclick="show('contact')">Kontakt</button>
+</nav>
+
+<script>
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  event.target.classList.add("active");
+}
+</script>
 
 </body>
 </html>
-
