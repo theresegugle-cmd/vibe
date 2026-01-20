@@ -220,12 +220,75 @@ font-weight:bold;">
   </p>
 </div>
 
+  <!-- MIN HÅRREISE -->
+<section id="journey">
+  <div class="card">
+    <h3>📸 Min hårreise</h3>
+    <p>Ta vare på før- og etterbilder fra hvert besøk.</p>
+
+    <button onclick="openNewVisit()" style="
+      margin:10px 0;
+      padding:12px 18px;
+      border:none;
+      border-radius:25px;
+      background:#FF4D8D;
+      color:white;
+      font-weight:bold;
+    ">
+      ➕ Legg til nytt besøk
+    </button>
+
+    <div id="journeyList"></div>
+  </div>
+
+  <!-- NYTT BESØK -->
+  <div class="card" id="newVisit" style="display:none;">
+    <h4>Nytt besøk</h4>
+
+    <div style="display:flex; gap:10px;">
+      <div style="flex:1;">
+        <p>Før</p>
+        <input type="file" accept="image/*" capture="camera" id="beforeInput">
+        <img id="beforePreview" style="width:100%;border-radius:12px;margin-top:6px;">
+      </div>
+
+      <div style="flex:1;">
+        <p>Etter</p>
+        <input type="file" accept="image/*" capture="camera" id="afterInput">
+        <img id="afterPreview" style="width:100%;border-radius:12px;margin-top:6px;">
+      </div>
+    </div>
+
+    <textarea id="visitNote" placeholder="Notat (valgfritt)" style="
+      width:100%;
+      margin-top:10px;
+      padding:10px;
+      border-radius:12px;
+      border:1px solid #ccc;
+    "></textarea>
+
+    <button onclick="saveVisit()" style="
+      margin-top:10px;
+      padding:12px;
+      width:100%;
+      border:none;
+      border-radius:25px;
+      background:#FF4D8D;
+      color:white;
+      font-weight:bold;
+    ">
+      💾 Lagre besøk
+    </button>
+  </div>
+</section>
+
 <!-- BUNNMENY -->
 <nav class="bottom-nav">
 <button onclick="show('live')" class="active">Live</button>
 <button onclick="show('prices')">Priser</button>
 <button onclick="show('staff')">Ansatte</button>
 <button onclick="show('offers')">Tilbud</button>
+<button onclick="show('journey', this)">Min hårreise</button>
 <button onclick="show('game')">Spill</button>  
 <button onclick="show('info')">Info</button>
 </nav>
@@ -304,9 +367,78 @@ function resetGame() {
   setupGame();
 }
 </script>
+  /* ===== MIN HÅRREISE ===== */
+let visits = JSON.parse(localStorage.getItem("journeyVisits") || "[]");
+
+function openNewVisit(){
+  document.getElementById("newVisit").style.display = "block";
+}
+
+function previewImage(input, imgId){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => document.getElementById(imgId).src = e.target.result;
+  reader.readAsDataURL(file);
+}
+
+document.getElementById("beforeInput")?.addEventListener("change", e=>{
+  previewImage(e.target, "beforePreview");
+});
+document.getElementById("afterInput")?.addEventListener("change", e=>{
+  previewImage(e.target, "afterPreview");
+});
+
+function saveVisit(){
+  const before = document.getElementById("beforePreview").src;
+  const after = document.getElementById("afterPreview").src;
+  if(!before || !after){
+    alert("Ta både før- og etterbilde");
+    return;
+  }
+
+  const visit = {
+    date: new Date().toLocaleDateString(),
+    before,
+    after,
+    note: document.getElementById("visitNote").value
+  };
+
+  visits.unshift(visit);
+  localStorage.setItem("journeyVisits", JSON.stringify(visits));
+
+  document.getElementById("newVisit").style.display = "none";
+  document.getElementById("visitNote").value = "";
+  document.getElementById("beforePreview").src = "";
+  document.getElementById("afterPreview").src = "";
+
+  renderVisits();
+}
+
+function renderVisits(){
+  const list = document.getElementById("journeyList");
+  if(!list) return;
+
+  list.innerHTML = "";
+  visits.forEach((v, i)=>{
+    list.innerHTML += `
+      <div class="card">
+        <strong>Besøk ${visits.length - i}</strong> – ${v.date}
+        <div style="display:flex;gap:8px;margin-top:6px;">
+          <img src="${v.before}" style="width:50%;border-radius:10px;">
+          <img src="${v.after}" style="width:50%;border-radius:10px;">
+        </div>
+        <p style="font-size:14px;">${v.note || ""}</p>
+      </div>
+    `;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", renderVisits);
 
 </body>
 </html>
+
 
 
 
