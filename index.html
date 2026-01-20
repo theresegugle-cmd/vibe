@@ -3,84 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vibe Askøy</title>
+<title>Vibe Åskøy</title>
 
 <style>
-body{
+body {
   margin:0;
   font-family:Arial,sans-serif;
   background:linear-gradient(135deg,#FFD1A3,#FF8FB6);
   padding-bottom:80px;
 }
-header{
+header {
   text-align:center;
-  padding:16px;
   font-size:24px;
   font-weight:bold;
+  padding:16px;
 }
-section{display:none;padding:16px;}
-section.active{display:block;}
-.card{
+section { display:none; padding:16px; }
+section.active { display:block; }
+
+.card {
   background:#fff;
   border-radius:12px;
   padding:16px;
   margin-bottom:12px;
 }
-.video{position:relative;padding-bottom:56.25%;height:0;}
-.video iframe{position:absolute;width:100%;height:100%;border-radius:12px;}
 
-.price-row{
-  display:flex;justify-content:space-between;
-  border-bottom:1px solid #eee;padding:8px 0;
+.price-row, .row {
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  border-bottom:1px solid #eee;
 }
 
-.staff{
+.video {
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;
+}
+.video iframe {
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:12px;
+}
+
+/* ansatte */
+.staff {
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:12px;
 }
-.staff img{
+.staff img {
   width:100%;
   border-radius:12px;
 }
-.staff-name{text-align:center;font-weight:bold;margin-top:6px;}
-  
-<section id="game" class="active">
-  <div class="card">
-    <h3>🎮 Hår-Match</h3>
-    <p>Finn like ikoner mens du venter ✂️</p>
-
-    <div id="gameBoard"
-         style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;">
-    </div>
-
-    <p id="moves" style="margin-top:12px;font-weight:bold;">
-      Trekk: 0
-    </p>
-
-    <button onclick="resetGame()" style="
-      margin-top:10px;
-      padding:10px 16px;
-      border:none;
-      border-radius:20px;
-      background:#FF4D8D;
-      color:white;
-      font-weight:bold;">
-      🔄 Start på nytt
-    </button>
-  </div>
-</section>
-
-.bottom-nav{
-  position:fixed;bottom:0;left:0;width:100%;
-  height:64px;background:#fff;border-top:1px solid #ddd;
-  display:flex;justify-content:space-around;align-items:center;
+.staff-name {
+  text-align:center;
+  font-weight:bold;
+  margin-top:6px;
 }
-.bottom-nav button{
-  background:none;border:none;font-size:12px;color:#555;
+
+/* spill */
+#gameBoard {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:12px;
 }
-.bottom-nav button.active{
-  color:#FF4D8D;font-weight:bold;
+
+/* bunnmeny */
+.bottom-nav {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:64px;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  border-top:1px solid #ddd;
+}
+.bottom-nav button {
+  background:none;
+  border:none;
+  font-size:12px;
+}
+.bottom-nav button.active {
+  color:#FF4D8D;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -94,15 +105,10 @@ section.active{display:block;}
 <div class="card">
 <h3>🔴 Live</h3>
 <div class="video">
-<iframe src="https://www.youtube.com/embed/live_stream?channel=UC5bCGMPx1WhM3EgK8f6SJlw" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/live_stream?channel=UC5bCGMPx1WhM3EgK8f6SJlw"
+frameborder="0" allowfullscreen></iframe>
 </div>
-<p>Live vises automatisk når vi sender.</p>
-</div>
-
-<div class="card">
-<h3>🔔 Pushvarsel</h3>
-<p>Få beskjed når vi går live.</p>
-<button onclick="alert('Pushvarsler aktiveres i neste steg')" style="padding:12px;border-radius:20px;border:none;background:#FF4D8D;color:#fff;">Aktiver varsler</button>
+<p>Live vises automatisk når vi sender – ellers siste video.</p>
 </div>
 </section>
 
@@ -110,22 +116,10 @@ section.active{display:block;}
 <section id="prices">
 <div class="card">
 <h3>💇‍♀️ Prisliste</h3>
-<div class="price-row"><span>Hårklipp</span><span>399 kr</span></div>
-<div class="price-row"><span>Rask maskinklipp</span><span>199 kr</span></div>
-<div class="price-row"><span>Nakkestuss</span><span>189 kr</span></div>
-<div class="price-row"><span>Skjeggklipp</span><span>199 kr</span></div>
-<div class="price-row"><span>Luggklipp</span><span>189 kr</span></div>
-<div class="price-row"><span>Hårklipp,vask + føn</span><span>689 kr</span></div>
-<div class="price-row"><span>Krøller</span><span>399 kr</span></div>
-<div class="price-row"><span>Festivalstyling</span><span>399 kr</span></div>
-<div class="price-row"><span>Vask og føn</span><span>399 kr</span></div></div>
-</section>
-
-<!-- TILBUD -->
-<section id="offers">
-<div class="card">
-<h3>🏷️ Tilbud</h3>
-<p><strong>APP-kunder:</strong> –10 % rabatt på produkter</p>
+<div class="price-row"><span>Dameklipp</span><span>fra 890 kr</span></div>
+<div class="price-row"><span>Herreklipp</span><span>fra 690 kr</span></div>
+<div class="price-row"><span>Barneklipp</span><span>fra 490 kr</span></div>
+<div class="price-row"><span>Farge</span><span>fra 1290 kr</span></div>
 </div>
 </section>
 
@@ -134,65 +128,81 @@ section.active{display:block;}
 <div class="card">
 <h3>👩‍🎤 Våre ansatte</h3>
 <div class="staff">
-<div>
-<img src="ansatt1.jpg">
-<div class="staff-name">Therese – Frisør</div>
+<div><img src="therese.jpg"><div class="staff-name">Therese</div></div>
+<div><img src="andrea.jpg"><div class="staff-name">Andrea</div></div>
+<div><img src="ilana.jpg"><div class="staff-name">Ilana</div></div>
+<div><img src="anna.jpg"><div class="staff-name">Anna</div></div>
 </div>
-<div>
-  <img src="ansatt2.jpg">
-<div class="staff-name">Helene – Frisør</div>
-</div>
-<div>
-<img src="ansatt3.jpg">
-<div class="staff-name">Ilana – Frisør</div>
-</div>
-</div>
-<img src="ansatt4.jpg">
-<div class="staff-name">Torill – Frisør</div>
-</div>
-<div><img src="ansatt5.jpg">
-<div class="staff-name">Anna – Frisør</div>
-</div>
-<div><img src="ansatt6.jpg">
-<div class="staff-name">Andrea – Frisør</div>
-</div>
-<div><img src="ansatt7.jpg">
-<div class="staff-name">Karmele – Frisør</div>
-</div>
-<div>
-<p style="font-size:13px;">(Du kan legge til flere ansatte)</p>
 </div>
 </section>
-<!-- KONTAKT -->
-<section id="contact">
+
+<!-- TILBUD -->
+<section id="offers">
 <div class="card">
-<h3>📍 Kontakt & åpningstider</h3>
-<p><strong>Adresse:</strong> Kleppestø senter</p>
-<p><strong>Adresse:</strong> Gamle Kleppestøvegen 2</p>
-<p><strong>Åpningstider:</strong><br>
-Man–Fre 10-21<br>
-Lørdag 10–18</p>
-
-<a href="https://maps.google.com/?q=Vibe+Åskøy" target="_blank">
-<button style="margin-top:10px;padding:12px;border-radius:20px;border:none;background:#FF4D8D;color:#fff;">
-🗺️ Åpne veibeskrivelse
-</button>
-</a>
+<h3>🎁 Tilbud</h3>
+<p>✨ -20 % på klipp for nye kunder</p>
+<p>✨ Gratis styling ved farge</p>
+<p>✨ Studentrabatt hver tirsdag</p>
 </div>
 </section>
 
-<!-- MENY -->
+<!-- SPILL -->
+<section id="game">
+<div class="card">
+<h3>🎮 Hår-Match</h3>
+<p>Finn like ikoner mens du venter ✂️</p>
+
+<div id="gameBoard"></div>
+
+<p id="moves" style="margin-top:12px;font-weight:bold;">Trekk: 0</p>
+
+<button onclick="resetGame()" style="
+padding:10px 16px;
+border:none;
+border-radius:20px;
+background:#FF4D8D;
+color:white;
+font-weight:bold;">
+🔄 Start på nytt
+</button>
+</div>
+</section>
+
+<!-- INFO -->
+<section id="info">
+<div class="card">
+<h3>🕒 Åpningstider</h3>
+<div class="row"><span>Man–Fre</span><span>09–17</span></div>
+<div class="row"><span>Lørdag</span><span>10–15</span></div>
+<div class="row"><span>Søndag</span><span>Stengt</span></div>
+</div>
+
+<div class="card">
+<h3>📍 Finn oss</h3>
+<iframe
+src="https://www.google.com/maps?q=Åskøy&output=embed"
+width="100%" height="200" style="border:0;border-radius:12px;">
+</iframe>
+<p>
+<a href="https://www.google.com/maps?q=Åskøy" target="_blank">
+🗺️ Åpne veibeskrivelse
+</a>
+</p>
+</div>
+</section>
+
+<!-- BUNNMENY -->
 <nav class="bottom-nav">
-<button onclick="show('game')">Spill</button>
 <button onclick="show('live')" class="active">Live</button>
 <button onclick="show('prices')">Priser</button>
-<button onclick="show('offers')">Tilbud</button>
 <button onclick="show('staff')">Ansatte</button>
-<button onclick="show('contact')">Kontakt</button>
+<button onclick="show('offers')">Tilbud</button>
+<button onclick="show('game')">Spill</button>
+<button onclick="show('info')">Info</button>
 </nav>
 
 <script>
-/* ===== MENY ===== */
+/* MENY */
 function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
@@ -200,7 +210,7 @@ function show(id){
   event.target.classList.add("active");
 }
 
-/* ===== HÅR-MATCH SPILL ===== */
+/* HÅR-MATCH SPILL */
 const icons = ["✂️","💇‍♀️","💈","🪮","✂️","💇‍♀️","💈","🪮"];
 let shuffled = [];
 let first = null;
@@ -208,10 +218,10 @@ let lock = false;
 let moves = 0;
 
 function setupGame() {
-  shuffled = icons.sort(() => 0.5 - Math.random());
   const board = document.getElementById("gameBoard");
-  if (!board) return;
+  if(!board) return;
 
+  shuffled = icons.sort(() => 0.5 - Math.random());
   board.innerHTML = "";
   moves = 0;
   document.getElementById("moves").innerText = "Trekk: 0";
@@ -237,17 +247,17 @@ function setupGame() {
 }
 
 function flip(card) {
-  if (lock || card.innerText !== "❓") return;
+  if(lock || card.innerText !== "❓") return;
 
   card.innerText = card.dataset.icon;
 
-  if (!first) {
+  if(!first) {
     first = card;
   } else {
     moves++;
     document.getElementById("moves").innerText = "Trekk: " + moves;
 
-    if (first.dataset.icon === card.dataset.icon) {
+    if(first.dataset.icon === card.dataset.icon) {
       first = null;
     } else {
       lock = true;
@@ -265,8 +275,11 @@ function resetGame() {
   setupGame();
 }
 
-/* Start spillet når siden er lastet */
 document.addEventListener("DOMContentLoaded", setupGame);
 </script>
+
+</body>
+</html>
+
 
 
