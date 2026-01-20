@@ -278,12 +278,50 @@ function flip(card) {
 function resetGame() {
   setupGame();
 }
+<!-- FANG SAKSEN -->
+<section id="catch">
+  <div class="card">
+    <h3>✂️ Fang saksen</h3>
+    <p>Trykk på saksen så raskt du kan – 30 sek!</p>
 
+    <div id="catchArea" style="
+      position:relative;
+      height:300px;
+      background:#FFF3F8;
+      border-radius:12px;
+      overflow:hidden;
+      margin-top:12px;
+    ">
+      <div id="scissor" style="
+        position:absolute;
+        font-size:32px;
+        cursor:pointer;
+        display:none;
+      ">✂️</div>
+    </div>
+
+    <p id="score" style="font-weight:bold;margin-top:10px;">
+      Poeng: 0
+    </p>
+
+    <button onclick="startCatchGame()" style="
+      padding:10px 16px;
+      border:none;
+      border-radius:20px;
+      background:#FF4D8D;
+      color:white;
+      font-weight:bold;
+    ">
+      ▶️ Start spill
+    </button>
+  </div>
+</section>
 document.addEventListener("DOMContentLoaded", setupGame);
 </script>
 
 </body>
 </html>
+
 
 
 
