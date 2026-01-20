@@ -279,49 +279,11 @@ function resetGame() {
   setupGame();
 }
   
-  /* ===== FANG SAKSEN ===== */
-let catchScore = 0;
-let catchTimer;
-let gameRunning = false;
-
-function startCatchGame() {
-  if (gameRunning) return;
-
-  gameRunning = true;
-  catchScore = 0;
-  document.getElementById("score").innerText = "Poeng: 0";
-
-  const scissor = document.getElementById("scissor");
-  const area = document.getElementById("catchArea");
-
-  scissor.style.display = "block";
-
-  function moveScissor() {
-    const maxX = area.clientWidth - 40;
-    const maxY = area.clientHeight - 40;
-    scissor.style.left = Math.random() * maxX + "px";
-    scissor.style.top = Math.random() * maxY + "px";
-  }
-
-  scissor.onclick = () => {
-    if (!gameRunning) return;
-    catchScore++;
-    document.getElementById("score").innerText = "Poeng: " + catchScore;
-    moveScissor();
-  };
-
-  moveScissor();
-
-  catchTimer = setTimeout(() => {
-    gameRunning = false;
-    scissor.style.display = "none";
-    alert("⏱️ Ferdig! Du fikk " + catchScore + " poeng ✂️");
-  }, 30000);
-}
 </script>
 
 </body>
 </html>
+
 
 
 
