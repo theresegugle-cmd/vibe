@@ -152,176 +152,53 @@ frameborder="0" allowfullscreen></iframe>
 
 <!-- SPILL -->
 <section id="game">
-<div class="card">
-<h3>🎮 Hår-Match</h3>
-<p>Finn like ikoner mens du venter ✂️</p>
+  <div class="card">
+    <h3>🎮 Spill</h3>
+    <p>Velg et spill mens du venter ✂️</p>
 
-<div id="gameBoard"></div>
-
-<p id="moves" style="margin-top:12px;font-weight:bold;">Trekk: 0</p>
-
-<button onclick="resetGame()" style="
-padding:10px 16px;
-border:none;
-border-radius:20px;
-background:#FF4D8D;
-color:white;
-font-weight:bold;">
-🔄 Start på nytt
-</button>
-</div>
+    <button onclick="show('match')" style="margin:6px;">Hår-Match</button>
+    <button onclick="show('catch')" style="margin:6px;">Fang saksen</button>
+  </div>
 </section>
 
-<!-- INFO -->
-<section id="info">
-<div class="card">
-<h3>🕒 Åpningstider</h3>
-<div class="row"><span>Man–Fre</span><span>10-21</span></div>
-<div class="row"><span>Lørdag</span><span>10–18</span></div>
-<div class="row"><span>Søndag</span><span>Stengt</span></div>
-</div>
-
-<div class="card">
-<h3>📍 Finn oss</h3>
-<iframe
-src="https://www.google.com/maps?q=Åskøy&output=embed"
-width="100%" height="200" style="border:0;border-radius:12px;">
-</iframe>
-<p>
-<a href="https://www.google.com/maps?q=Åskøy" target="_blank">
-🗺️ Åpne veibeskrivelse
-</a>
-</p>
-</div>
+<section id="match">
+  <div class="card">
+    <h3>✂️ Hår-Match</h3>
+    <div id="gameBoard"></div>
+    <p id="moves">Trekk: 0</p>
+    <button onclick="resetGame()">🔄 Start på nytt</button>
+  </div>
 </section>
 
-<!-- BUNNMENY -->
-<nav class="bottom-nav">
-<button onclick="show('live')" class="active">Live</button>
-<button onclick="show('prices')">Priser</button>
-<button onclick="show('staff')">Ansatte</button>
-<button onclick="show('offers')">Tilbud</button>
-<button onclick="show('game')">Spill</button>
-<button onclick="show('info')">Info</button>
-</nav>
+<section id="catch">
+  <div class="card">
+    <h3>✂️ Fang saksen</h3>
+    <p>Trykk på saksen – 30 sek!</p>
 
-<script>
-/* MENY */
-function show(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  event.target.classList.add("active");
-}
-
-/* HÅR-MATCH SPILL */
-const icons = ["✂️","💇‍♀️","💈","🪮","✂️","💇‍♀️","💈","🪮"];
-let shuffled = [];
-let first = null;
-let lock = false;
-let moves = 0;
-
-function setupGame() {
-  const board = document.getElementById("gameBoard");
-  if(!board) return;
-
-  shuffled = icons.sort(() => 0.5 - Math.random());
-  board.innerHTML = "";
-  moves = 0;
-  document.getElementById("moves").innerText = "Trekk: 0";
-  first = null;
-  lock = false;
-
-  shuffled.forEach(icon => {
-    const card = document.createElement("div");
-    card.innerText = "❓";
-    card.dataset.icon = icon;
-    card.style = `
-      background:white;
+    <div id="catchArea" style="
+      position:relative;
+      height:300px;
+      background:#FFF3F8;
       border-radius:12px;
-      padding:18px;
-      font-size:28px;
-      text-align:center;
-      cursor:pointer;
-      user-select:none;
-    `;
-    card.onclick = () => flip(card);
-    board.appendChild(card);
-  });
-}
+      overflow:hidden;
+    ">
+      <div id="scissor" style="
+        position:absolute;
+        font-size:32px;
+        cursor:pointer;
+        display:none;
+      ">✂️</div>
+    </div>
 
-function flip(card) {
-  if(lock || card.innerText !== "❓") return;
-
-  card.innerText = card.dataset.icon;
-
-  if(!first) {
-    first = card;
-  } else {
-    moves++;
-    document.getElementById("moves").innerText = "Trekk: " + moves;
-
-    if(first.dataset.icon === card.dataset.icon) {
-      first = null;
-    } else {
-      lock = true;
-      setTimeout(() => {
-        first.innerText = "❓";
-        card.innerText = "❓";
-        first = null;
-        lock = false;
-      }, 700);
-    }
-  }
-}
-
-function resetGame() {
-  setupGame();
-}
-  
-  /* ===== FANG SAKSEN ===== */
-let catchScore = 0;
-let catchTimer;
-let gameRunning = false;
-
-function startCatchGame() {
-  if (gameRunning) return;
-
-  gameRunning = true;
-  catchScore = 0;
-  document.getElementById("score").innerText = "Poeng: 0";
-
-  const scissor = document.getElementById("scissor");
-  const area = document.getElementById("catchArea");
-
-  scissor.style.display = "block";
-
-  function moveScissor() {
-    const maxX = area.clientWidth - 40;
-    const maxY = area.clientHeight - 40;
-    scissor.style.left = Math.random() * maxX + "px";
-    scissor.style.top = Math.random() * maxY + "px";
-  }
-
-  scissor.onclick = () => {
-    if (!gameRunning) return;
-    catchScore++;
-    document.getElementById("score").innerText = "Poeng: " + catchScore;
-    moveScissor();
-  };
-
-  moveScissor();
-
-  catchTimer = setTimeout(() => {
-    gameRunning = false;
-    scissor.style.display = "none";
-    alert("⏱️ Ferdig! Du fikk " + catchScore + " poeng ✂️");
-  }, 30000);
-}
+    <p id="score">Poeng: 0</p>
+    <button onclick="startCatchGame()">▶️ Start spill</button>
+  </div>
+</section>
 </script>
 
 </body>
 </html>
+
 
 
 
