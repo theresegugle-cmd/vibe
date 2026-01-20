@@ -45,6 +45,37 @@ section.active{display:block;}
 }
 .staff-name{text-align:center;font-weight:bold;margin-top:6px;}
 
+  <!-- SPILL -->
+<section id="game">
+  <div class="card">
+    <h3>🎮 Hår-Match</h3>
+    <p>Finn like ikoner – perfekt mens du venter ✂️</p>
+
+    <div id="gameBoard" style="
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:12px;
+    "></div>
+
+    <p id="moves" style="margin-top:12px;font-weight:bold;">
+      Trekk: 0
+    </p>
+
+    <button onclick="resetGame()" style="
+      margin-top:10px;
+      padding:10px 16px;
+      border:none;
+      border-radius:20px;
+      background:#FF4D8D;
+      color:white;
+      font-weight:bold;
+    ">
+      🔄 Start på nytt
+    </button>
+  </div>
+</section>
+  
 .bottom-nav{
   position:fixed;bottom:0;left:0;width:100%;
   height:64px;background:#fff;border-top:1px solid #ddd;
@@ -157,6 +188,7 @@ Lørdag 10–18</p>
 
 <!-- MENY -->
 <nav class="bottom-nav">
+<button onclick="show('game')">Spill</button>
 <button onclick="show('live')" class="active">Live</button>
 <button onclick="show('prices')">Priser</button>
 <button onclick="show('offers')">Tilbud</button>
@@ -172,9 +204,78 @@ function show(id){
   event.target.classList.add("active");
 }
 </script>
+  <script>
+/* ===== HÅR-MATCH SPILL ===== */
+
+const icons = ["✂️","💇‍♀️","💈","🪮","✂️","💇‍♀️","💈","🪮"];
+let shuffled = [];
+let first = null;
+let lock = false;
+let moves = 0;
+
+function setupGame() {
+  shuffled = icons.sort(() => 0.5 - Math.random());
+  const board = document.getElementById("gameBoard");
+  board.innerHTML = "";
+  moves = 0;
+  document.getElementById("moves").innerText = "Trekk: 0";
+  first = null;
+  lock = false;
+
+  shuffled.forEach((icon, index) => {
+    const card = document.createElement("div");
+    card.innerText = "❓";
+    card.dataset.icon = icon;
+    card.style = `
+      background:white;
+      border-radius:12px;
+      padding:18px;
+      font-size:28px;
+      text-align:center;
+      cursor:pointer;
+      user-select:none;
+    `;
+    card.onclick = () => flip(card);
+    board.appendChild(card);
+  });
+}
+
+function flip(card) {
+  if (lock || card.innerText !== "❓") return;
+
+  card.innerText = card.dataset.icon;
+
+  if (!first) {
+    first = card;
+  } else {
+    moves++;
+    document.getElementById("moves").innerText = "Trekk: " + moves;
+
+    if (first.dataset.icon === card.dataset.icon) {
+      first = null;
+    } else {
+      lock = true;
+      setTimeout(() => {
+        first.innerText = "❓";
+        card.innerText = "❓";
+        first = null;
+        lock = false;
+      }, 700);
+    }
+  }
+}
+
+function resetGame() {
+  setupGame();
+}
+
+/* Start spillet første gang */
+setupGame();
+</script>
 
 </body>
 </html>
+
 
 
 
