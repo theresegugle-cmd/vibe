@@ -45,9 +45,9 @@ section.active{display:block;}
 }
 .staff-name{text-align:center;font-weight:bold;margin-top:6px;}
 
-  <!-- SPILL -->
+<!-- SPILL -->
 <section id="game">
-  <div class="card">
+    <div class="card">
     <h3>🎮 Hår-Match</h3>
     <p>Finn like ikoner – perfekt mens du venter ✂️</p>
 
@@ -197,15 +197,15 @@ Lørdag 10–18</p>
 </nav>
 
 <script>
+/* ===== MENY ===== */
 function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   event.target.classList.add("active");
 }
-</script>
-/* ===== HÅR-MATCH SPILL ===== */
 
+/* ===== HÅR-MATCH SPILL ===== */
 const icons = ["✂️","💇‍♀️","💈","🪮","✂️","💇‍♀️","💈","🪮"];
 let shuffled = [];
 let first = null;
@@ -215,13 +215,15 @@ let moves = 0;
 function setupGame() {
   shuffled = icons.sort(() => 0.5 - Math.random());
   const board = document.getElementById("gameBoard");
+  if (!board) return;
+
   board.innerHTML = "";
   moves = 0;
   document.getElementById("moves").innerText = "Trekk: 0";
   first = null;
   lock = false;
 
-  shuffled.forEach((icon, index) => {
+  shuffled.forEach(icon => {
     const card = document.createElement("div");
     card.innerText = "❓";
     card.dataset.icon = icon;
@@ -268,15 +270,6 @@ function resetGame() {
   setupGame();
 }
 
-/* Start spillet første gang */
-setupGame();
+/* Start spillet når siden er lastet */
+document.addEventListener("DOMContentLoaded", setupGame);
 </script>
-
-</body>
-</html>
-
-
-
-
-
-
