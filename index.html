@@ -63,7 +63,7 @@ section.active { display:block; }
   margin-top:6px;
 }
 
-/* spill */
+/* Spill */
 #gameBoard {
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -71,7 +71,7 @@ section.active { display:block; }
   margin-top:12px;
 }
 
-/* bunnmeny */
+/* Bunnmeny */
 .bottom-nav {
   position:fixed;
   bottom:0;
@@ -83,6 +83,7 @@ section.active { display:block; }
   justify-content:space-around;
   align-items:center;
   border-top:1px solid #ddd;
+  z-index:9999;
 }
 .bottom-nav button {
   background:none;
@@ -102,125 +103,104 @@ section.active { display:block; }
 
 <!-- LIVE -->
 <section id="live" class="active">
-<div class="card">
-<h3>🔴 Live</h3>
-<div class="video">
-<iframe src="https://www.youtube.com/embed/live_stream?channel=UC5bCGMPx1WhM3EgK8f6SJlw"
-frameborder="0" allowfullscreen></iframe>
-</div>
-<p>Live vises automatisk når vi sender – ellers siste video. Book din plass i køen og vær her når det er din tur.</p>
-</div>
-</section>
+  <div class="card">
+    <h3>🔴 Live</h3>
 
-  <a href="https://vibeaskyas.ordin.online/"
-   target="_blank"
-   style="
-     display:block;
-     margin-top:14px;
-     padding:14px;
-     text-align:center;
-     background:#FF4D8D;
-     color:white;
-     text-decoration:none;
-     border-radius:30px;
-     font-weight:bold;
-     font-size:16px;
-   ">
-  ✂️ Book hårklipp for å komme inn i køen NÅ
-</a>
+    <div class="video">
+      <iframe
+        src="https://www.youtube.com/embed/live_stream?channel=UC5bCGMPx1WhM3EgK8f6SJlw"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p>
+      Live vises automatisk når vi sender – ellers siste video.
+      Book din plass i køen og vær her når det er din tur.
+    </p>
+
+    <a href="https://vibeaskyas.ordin.online/"
+       target="_blank"
+       style="
+         display:block;
+         margin-top:14px;
+         padding:14px;
+         text-align:center;
+         background:#FF4D8D;
+         color:white;
+         text-decoration:none;
+         border-radius:30px;
+         font-weight:bold;
+         font-size:16px;
+       ">
+      ✂️ Book hårklipp for å komme inn i køen NÅ
+    </a>
+  </div>
+</section>
 
 <!-- PRISER -->
 <section id="prices">
-<div class="card">
-<h3> Prisliste</h3>
-<div class="price-row"><span>HÅRKLIPP</span><span>399</span></div>
-<div class="price-row"><span>RASK MASKINKLIPP</span><span>189</span></div>
-<div class="price-row"><span>LUGGKLIPP</span><span>189</span></div>
-<div class="price-row"><span>SKJEGGKLIPP</span><span>199</span></div>
-<div class="price-row"><span>NAKKESTUSS</span><span>189</span></div>
-<div class="price-row"><span>VASK & FØN</span><span>399</span></div>
-<div class="price-row"><span>FESTIVALSTYLING</span><span>399</span></div>
-<div class="price-row"><span>KRØLLER</span><span>399</span></div></div>
+  <div class="card">
+    <h3>Prisliste</h3>
+    <div class="price-row"><span>HÅRKLIPP</span><span>399</span></div>
+    <div class="price-row"><span>RASK MASKINKLIPP</span><span>189</span></div>
+    <div class="price-row"><span>LUGGKLIPP</span><span>189</span></div>
+    <div class="price-row"><span>SKJEGGKLIPP</span><span>199</span></div>
+    <div class="price-row"><span>NAKKESTUSS</span><span>189</span></div>
+    <div class="price-row"><span>VASK & FØN</span><span>399</span></div>
+    <div class="price-row"><span>FESTIVALSTYLING</span><span>399</span></div>
+    <div class="price-row"><span>KRØLLER</span><span>399</span></div>
+  </div>
 </section>
 
 <!-- ANSATTE -->
 <section id="staff">
-<div class="card">
-<h3> Våre ansatte</h3>
-<div class="staff">
-<div><img src="therese.jpg"><div class="staff-name">Therese</div></div>
-<div><img src="helene.jpg"><div class="staff-name">Helene</div></div>
-<div><img src="andrea.jpg"><div class="staff-name">Andrea</div></div>
-<div><img src="ilana.jpg"><div class="staff-name">Ilana</div></div>
-<div><img src="anna.jpg"><div class="staff-name">Anna</div></div>
-<div><img src="karmele.jpg"><div class="staff-name">Karmele</div></div>
-<div><img src="torill.jpg"><div class="staff-name">Torill</div></div></div>
-</div>
+  <div class="card">
+    <h3>Våre ansatte</h3>
+    <div class="staff">
+      <div><img src="therese.jpg"><div class="staff-name">Therese</div></div>
+      <div><img src="helene.jpg"><div class="staff-name">Helene</div></div>
+      <div><img src="andrea.jpg"><div class="staff-name">Andrea</div></div>
+      <div><img src="ilana.jpg"><div class="staff-name">Ilana</div></div>
+      <div><img src="anna.jpg"><div class="staff-name">Anna</div></div>
+      <div><img src="karmele.jpg"><div class="staff-name">Karmele</div></div>
+      <div><img src="torill.jpg"><div class="staff-name">Torill</div></div>
+    </div>
+  </div>
 </section>
 
 <!-- TILBUD -->
 <section id="offers">
-<div class="card">
-<h3>🎁 Tilbud</h3>
-<p>✨ APP-kunder 10% rabatt på produkter</p>
-<p>✨ Sjekk Klubb Kleppestø for flere tilbud</p>
-</div>
+  <div class="card">
+    <h3>🎁 Tilbud</h3>
+    <p>✨ App-kunder får 10 % rabatt på produkter</p>
+    <p>✨ Sjekk Klubb Kleppestø for flere tilbud</p>
+  </div>
 </section>
 
 <!-- SPILL -->
 <section id="game">
-<div class="card">
-<h3> Hår-Match</h3>
-<p>Finn like ikoner mens du venter ✂️</p>
+  <div class="card">
+    <h3>🎮 Hår-Match</h3>
+    <p>Finn like ikoner mens du venter ✂️</p>
 
-<div id="gameBoard"></div>
+    <div id="gameBoard"></div>
 
-<p id="moves" style="margin-top:12px;font-weight:bold;">Trekk: 0</p>
+    <p id="moves" style="margin-top:12px;font-weight:bold;">Trekk: 0</p>
 
-<button onclick="resetGame()" style="
-padding:10px 16px;
-border:none;
-border-radius:20px;
-background:#FF4D8D;
-color:white;
-font-weight:bold;">
-🔄 Start på nytt
-</button>
-</div>
+    <button onclick="resetGame()" style="
+      padding:10px 16px;
+      border:none;
+      border-radius:20px;
+      background:#FF4D8D;
+      color:white;
+      font-weight:bold;">
+      🔄 Start på nytt
+    </button>
+  </div>
 </section>
 
-<!-- INFO -->
-<section id="info">
-<div class="card">
-<h3>🕒 Åpningstider</h3>
-<div class="row"><span>Man–Fre</span><span>10-21</span></div>
-<div class="row"><span>Lørdag</span><span>10–18</span></div>
-<div class="row"><span>Søndag</span><span>Stengt</span></div>
-</div>
-
-<div class="card">
-  <h3>📍 Finn oss</h3>
-  <p><strong>Adresse:</strong><br>
-    Gamle Kleppestøvegen 2<br>
-    5300 Kleppestø
-  </p>
-
-  <iframe
-    src="https://www.google.com/maps?q=Gamle+Kleppestøvegen+2,+5300+Kleppestø&output=embed"
-    width="100%"
-    height="200"
-    style="border:0;border-radius:12px;">
-  </iframe>
-
-  <p>
-    <a href="https://www.google.com/maps?q=Gamle+Kleppestøvegen+2,+5300+Kleppestø"
-       target="_blank">
-      🗺️ Åpne veibeskrivelse
-    </a>
-  </p>
-</div>
-
-  <!-- MIN HÅRREISE -->
+<!-- MIN HÅRREISE -->
 <section id="journey">
   <div class="card">
     <h3>📸 Min hårreise</h3>
@@ -233,19 +213,17 @@ font-weight:bold;">
       border-radius:25px;
       background:#FF4D8D;
       color:white;
-      font-weight:bold;
-    ">
+      font-weight:bold;">
       ➕ Legg til nytt besøk
     </button>
 
     <div id="journeyList"></div>
   </div>
 
-  <!-- NYTT BESØK -->
   <div class="card" id="newVisit" style="display:none;">
     <h4>Nytt besøk</h4>
 
-    <div style="display:flex; gap:10px;">
+    <div style="display:flex;gap:10px;">
       <div style="flex:1;">
         <p>Før</p>
         <input type="file" accept="image/*" capture="camera" id="beforeInput">
@@ -259,13 +237,8 @@ font-weight:bold;">
       </div>
     </div>
 
-    <textarea id="visitNote" placeholder="Notat (valgfritt)" style="
-      width:100%;
-      margin-top:10px;
-      padding:10px;
-      border-radius:12px;
-      border:1px solid #ccc;
-    "></textarea>
+    <textarea id="visitNote" placeholder="Notat (valgfritt)"
+      style="width:100%;margin-top:10px;padding:10px;border-radius:12px;border:1px solid #ccc;"></textarea>
 
     <button onclick="saveVisit()" style="
       margin-top:10px;
@@ -275,170 +248,146 @@ font-weight:bold;">
       border-radius:25px;
       background:#FF4D8D;
       color:white;
-      font-weight:bold;
-    ">
+      font-weight:bold;">
       💾 Lagre besøk
     </button>
   </div>
 </section>
 
+<!-- INFO -->
+<section id="info">
+  <div class="card">
+    <h3>🕒 Åpningstider</h3>
+    <div class="row"><span>Man–Fre</span><span>10–21</span></div>
+    <div class="row"><span>Lørdag</span><span>10–18</span></div>
+    <div class="row"><span>Søndag</span><span>Stengt</span></div>
+  </div>
+
+  <div class="card">
+    <h3>📍 Finn oss</h3>
+    <p><strong>Adresse:</strong><br>
+      Gamle Kleppestøvegen 2<br>
+      5300 Kleppestø
+    </p>
+
+    <iframe
+      src="https://www.google.com/maps?q=Gamle+Kleppestøvegen+2,+5300+Kleppestø&output=embed"
+      width="100%" height="200"
+      style="border:0;border-radius:12px;">
+    </iframe>
+
+    <p>
+      <a href="https://www.google.com/maps?q=Gamle+Kleppestøvegen+2,+5300+Kleppestø"
+         target="_blank">🗺️ Åpne veibeskrivelse</a>
+    </p>
+  </div>
+</section>
+
 <!-- BUNNMENY -->
 <nav class="bottom-nav">
-<button onclick="show('live')" class="active">Live</button>
-<button onclick="show('prices')">Priser</button>
-<button onclick="show('staff')">Ansatte</button>
-<button onclick="show('offers')">Tilbud</button>
-<button onclick="show('journey', this)">Min hårreise</button>
-<button onclick="show('game')">Spill</button>  
-<button onclick="show('info')">Info</button>
+  <button onclick="show('live')" class="active">Live</button>
+  <button onclick="show('prices')">Priser</button>
+  <button onclick="show('staff')">Ansatte</button>
+  <button onclick="show('offers')">Tilbud</button>
+  <button onclick="show('game')">Spill</button>
+  <button onclick="show('journey')">Min hårreise</button>
+  <button onclick="show('info')">Info</button>
 </nav>
 
 <script>
 /* MENY */
 function show(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  event.target.classList.add("active");
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".bottom-nav button").forEach(b => b.classList.remove("active"));
+
+  const section = document.getElementById(id);
+  if(section) section.classList.add("active");
 }
 
-/* HÅR-MATCH SPILL */
+/* HÅR-MATCH */
 const icons = ["✂️","💇‍♀️","💈","🪮","✂️","💇‍♀️","💈","🪮"];
-let shuffled = [];
-let first = null;
-let lock = false;
-let moves = 0;
+let first=null, lock=false, moves=0;
 
-function setupGame() {
-  const board = document.getElementById("gameBoard");
+function setupGame(){
+  const board=document.getElementById("gameBoard");
   if(!board) return;
+  board.innerHTML="";
+  moves=0;
+  document.getElementById("moves").innerText="Trekk: 0";
 
-  shuffled = icons.sort(() => 0.5 - Math.random());
-  board.innerHTML = "";
-  moves = 0;
-  document.getElementById("moves").innerText = "Trekk: 0";
-  first = null;
-  lock = false;
-
-  shuffled.forEach(icon => {
-    const card = document.createElement("div");
-    card.innerText = "❓";
-    card.dataset.icon = icon;
-    card.style = `
-      background:white;
-      border-radius:12px;
-      padding:18px;
-      font-size:28px;
-      text-align:center;
-      cursor:pointer;
-      user-select:none;
-    `;
-    card.onclick = () => flip(card);
+  [...icons].sort(()=>0.5-Math.random()).forEach(icon=>{
+    const card=document.createElement("div");
+    card.innerText="❓";
+    card.style="padding:18px;font-size:28px;background:white;border-radius:12px;text-align:center;cursor:pointer";
+    card.onclick=()=>flip(card,icon);
     board.appendChild(card);
   });
 }
-
-function flip(card) {
-  if(lock || card.innerText !== "❓") return;
-
-  card.innerText = card.dataset.icon;
-
-  if(!first) {
-    first = card;
-  } else {
+function flip(card,icon){
+  if(lock||card.innerText!=="❓")return;
+  card.innerText=icon;
+  if(!first){first=card;}
+  else{
     moves++;
-    document.getElementById("moves").innerText = "Trekk: " + moves;
-
-    if(first.dataset.icon === card.dataset.icon) {
-      first = null;
-    } else {
-      lock = true;
-      setTimeout(() => {
-        first.innerText = "❓";
-        card.innerText = "❓";
-        first = null;
-        lock = false;
-      }, 700);
-    }
+    document.getElementById("moves").innerText="Trekk: "+moves;
+    if(first.innerText!==card.innerText){
+      lock=true;
+      setTimeout(()=>{first.innerText="❓";card.innerText="❓";first=null;lock=false;},700);
+    } else first=null;
   }
 }
+function resetGame(){setupGame();}
 
-function resetGame() {
-  setupGame();
+/* MIN HÅRREISE */
+let visits=JSON.parse(localStorage.getItem("journeyVisits")||"[]");
+
+function openNewVisit(){document.getElementById("newVisit").style.display="block";}
+
+function previewImage(input,id){
+  const f=input.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=e=>document.getElementById(id).src=e.target.result;
+  r.readAsDataURL(f);
 }
-  
-</script>
-  /* ===== MIN HÅRREISE ===== */
-let visits = JSON.parse(localStorage.getItem("journeyVisits") || "[]");
-
-function openNewVisit(){
-  document.getElementById("newVisit").style.display = "block";
-}
-
-function previewImage(input, imgId){
-  const file = input.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = e => document.getElementById(imgId).src = e.target.result;
-  reader.readAsDataURL(file);
-}
-
-document.getElementById("beforeInput")?.addEventListener("change", e=>{
-  previewImage(e.target, "beforePreview");
-});
-document.getElementById("afterInput")?.addEventListener("change", e=>{
-  previewImage(e.target, "afterPreview");
-});
+beforeInput?.addEventListener("change",e=>previewImage(e.target,"beforePreview"));
+afterInput?.addEventListener("change",e=>previewImage(e.target,"afterPreview"));
 
 function saveVisit(){
-  const before = document.getElementById("beforePreview").src;
-  const after = document.getElementById("afterPreview").src;
-  if(!before || !after){
-    alert("Ta både før- og etterbilde");
-    return;
-  }
-
-  const visit = {
-    date: new Date().toLocaleDateString(),
-    before,
-    after,
-    note: document.getElementById("visitNote").value
-  };
-
-  visits.unshift(visit);
-  localStorage.setItem("journeyVisits", JSON.stringify(visits));
-
-  document.getElementById("newVisit").style.display = "none";
-  document.getElementById("visitNote").value = "";
-  document.getElementById("beforePreview").src = "";
-  document.getElementById("afterPreview").src = "";
-
+  const b=beforePreview.src, a=afterPreview.src;
+  if(!b||!a){alert("Ta både før- og etterbilde");return;}
+  visits.unshift({date:new Date().toLocaleDateString(),before:b,after:a,note:visitNote.value});
+  localStorage.setItem("journeyVisits",JSON.stringify(visits));
+  newVisit.style.display="none";
+  beforePreview.src=afterPreview.src=visitNote.value="";
   renderVisits();
 }
-
 function renderVisits(){
-  const list = document.getElementById("journeyList");
-  if(!list) return;
-
-  list.innerHTML = "";
-  visits.forEach((v, i)=>{
-    list.innerHTML += `
+  journeyList.innerHTML="";
+  visits.forEach((v,i)=>{
+    journeyList.innerHTML+=`
       <div class="card">
-        <strong>Besøk ${visits.length - i}</strong> – ${v.date}
+        <strong>Besøk ${visits.length-i}</strong> – ${v.date}
         <div style="display:flex;gap:8px;margin-top:6px;">
           <img src="${v.before}" style="width:50%;border-radius:10px;">
           <img src="${v.after}" style="width:50%;border-radius:10px;">
         </div>
-        <p style="font-size:14px;">${v.note || ""}</p>
-      </div>
-    `;
+        <p style="font-size:14px;">${v.note||""}</p>
+      </div>`;
   });
 }
 
-document.addEventListener("DOMContentLoaded", renderVisits);
+document.addEventListener("DOMContentLoaded",()=>{
+  show("live");
+  setupGame();
+  renderVisits();
+});
+</script>
 
 </body>
 </html>
+
+
+ 
 
 
 
