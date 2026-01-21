@@ -399,20 +399,73 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
   
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  show("live");
-  setupGame();
-  renderVisits();
 
-  /* PWA – Service Worker */
+<script>
+function show(id, btn){
+  document.querySelectorAll("section").forEach(s =>
+    s.classList.remove("active")
+  );
+
+  const section = document.getElementById(id);
+  if(section) section.classList.add("active");
+
+  document.querySelectorAll(".bottom-nav button").forEach(b =>
+    b.classList.remove("active")
+  );
+
+  if(btn) btn.classList.add("active");
+}
+
+/* HÅR-MATCH */
+const icons = ["✂️","💇‍♀️","💈","🪮","✂️","💇‍♀️","💈","🪮"];
+let first=null, lock=false, moves=0;
+
+function setupGame(){
+  const board=document.getElementById("gameBoard");
+  if(!board) return;
+  board.innerHTML="";
+  moves=0;
+  document.getElementById("moves").innerText="Trekk: 0";
+
+  [...icons].sort(()=>0.5-Math.random()).forEach(icon=>{
+    const card=document.createElement("div");
+    card.innerText="❓";
+    card.style="padding:18px;font-size:28px;background:white;border-radius:12px;text-align:center;cursor:pointer";
+    card.onclick=()=>flip(card,icon);
+    board.appendChild(card);
+  });
+}
+
+function flip(card,icon){
+  if(lock||card.innerText!=="❓")return;
+  card.innerText=icon;
+  if(!first){first=card;}
+  else{
+    moves++;
+    document.getElementById("moves").innerText="Trekk: "+moves;
+    if(first.innerText!==card.innerText){
+      lock=true;
+      setTimeout(()=>{first.innerText="❓";card.innerText="❓";first=null;lock=false;},700);
+    } else first=null;
+  }
+}
+function resetGame(){setupGame();}
+
+/* START */
+document.addEventListener("DOMContentLoaded", ()=>{
+  const firstBtn=document.querySelector(".bottom-nav button");
+  show("live", firstBtn);
+  setupGame();
+
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js");
   }
 });
 </script>
-
+  
 </body>
 </html>
+
 
 
 
