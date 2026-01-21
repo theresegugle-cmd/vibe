@@ -88,15 +88,26 @@ input,textarea{
   border-radius:10px;
   border:1px solid #ccc;
 }
-button.action{
-  margin-top:10px;
-  padding:12px;
-  border:none;
-  border-radius:25px;
-  background:#FF4D8D;
-  color:white;
-  font-weight:bold;
-  width:100%;
+a.action {
+  display: block;
+  margin-top: 14px;
+  padding: 14px;
+  text-align: center;
+  background: #FF4D8D;
+  color: #ffffff !important;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 8px 20px rgba(255,77,141,0.25);
+}
+
+a.action:visited,
+a.action:hover,
+a.action:active {
+  color: #ffffff !important;
+  text-decoration: none;
+}
 }
 </style>
 </head>
@@ -294,6 +305,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 </body>
 </html>
+
 
 
 
