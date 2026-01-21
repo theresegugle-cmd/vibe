@@ -1,10 +1,11 @@
-﻿{
-  "name": "Vibe Åskøy",
+{
+  "name": "Vibe Askøy",
   "short_name": "Vibe",
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#FFD1A3",
-  "theme_color": "#FF8FB6",
+  "background_color": "#fff3e4",
+  "theme_color": "#f3a0bc",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
