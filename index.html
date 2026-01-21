@@ -10,103 +10,93 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 
 <style>
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: linear-gradient(160deg, #fde6ee, #fff3e4);
-  padding-bottom: 120px;
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:linear-gradient(160deg,#fde6ee,#fff3e4);
+  padding-bottom:120px;
 }
 
-header {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  padding: 16px;
+header{
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+  padding:16px;
 }
 
-section {
-  display: none;
-  padding: 16px;
-}
-section.active {
-  display: block;
+section{display:none;padding:16px;}
+section.active{display:block;}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:12px;
 }
 
-.card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 12px;
+.video{position:relative;padding-bottom:56.25%;}
+.video iframe{position:absolute;width:100%;height:100%;border-radius:12px;border:0;}
+
+.staff{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.staff img{width:100%;border-radius:12px;}
+.staff-name{text-align:center;font-weight:bold;margin-top:6px;}
+
+.price-row,.row{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  border-bottom:1px solid #eee;
 }
 
-.price-row, .row {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.video {
-  position: relative;
-  padding-bottom: 56.25%;
-}
-.video iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  border: 0;
-}
-
-/* Ansatte */
-.staff {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-.staff img {
-  width: 100%;
-  border-radius: 12px;
-}
-.staff-name {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 6px;
-}
-
-/* Spill */
-#gameBoard {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-top: 12px;
+#gameBoard{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:12px;
 }
 
 /* Bunnmeny */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 72px;
-  background: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-top: 1px solid #ddd;
-  z-index: 99999;
+.bottom-nav{
+  position:fixed;
+  bottom:0;left:0;
+  width:100%;
+  height:72px;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  border-top:1px solid #ddd;
+  z-index:99999;
+}
+.bottom-nav button{
+  background:none;
+  border:none;
+  font-size:12px;
+}
+.bottom-nav button.active{
+  color:#FF4D8D;
+  font-weight:bold;
 }
 
-.bottom-nav button {
-  background: none;
-  border: none;
-  font-size: 12px;
+input,textarea{
+  width:100%;
+  padding:8px;
+  border-radius:10px;
+  border:1px solid #ccc;
 }
-
-.bottom-nav button.active {
-  color: #FF4D8D;
-  font-weight: bold;
+button.action{
+  margin-top:10px;
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  background:#FF4D8D;
+  color:white;
+  font-weight:bold;
+  width:100%;
 }
 </style>
 </head>
@@ -115,22 +105,20 @@ section.active {
 
 <header>VIBE ASKØY</header>
 
+<!-- LIVE -->
 <section id="live" class="active">
   <div class="card">
     <h3>🔴 Live</h3>
     <div class="video">
       <iframe src="https://www.youtube.com/embed/live_stream?channel=UC5bCGMPx1WhM3EgK8f6SJlw" allowfullscreen></iframe>
     </div>
-    <p>Live vises automatisk når vi sender – ellers siste video.</p>
-    <a href="https://vibeaskyas.ordin.online/" target="_blank"
-       style="display:block;margin-top:14px;padding:14px;text-align:center;
-       background:#FF4D8D;color:white;text-decoration:none;border-radius:30px;
-       font-weight:bold;font-size:16px;">
+    <a class="action" href="https://vibeaskyas.ordin.online/" target="_blank">
       ✂️ Book hårklipp nå
     </a>
   </div>
 </section>
 
+<!-- PRISER -->
 <section id="prices">
   <div class="card">
     <h3>Prisliste</h3>
@@ -140,6 +128,7 @@ section.active {
   </div>
 </section>
 
+<!-- ANSATTE -->
 <section id="staff">
   <div class="card">
     <h3>Våre ansatte</h3>
@@ -152,15 +141,38 @@ section.active {
   </div>
 </section>
 
+<!-- SPILL -->
 <section id="game">
   <div class="card">
     <h3>🎮 Hår-Match</h3>
     <div id="gameBoard"></div>
     <p id="moves">Trekk: 0</p>
-    <button onclick="resetGame()">Start på nytt</button>
+    <button class="action" onclick="resetGame()">Start på nytt</button>
   </div>
 </section>
 
+<!-- MIN HÅRREISE -->
+<section id="journey">
+  <div class="card">
+    <h3>📸 Min hårreise</h3>
+    <button class="action" onclick="openNewVisit()">➕ Nytt besøk</button>
+    <div id="journeyList"></div>
+  </div>
+
+  <div class="card" id="newVisit" style="display:none;">
+    <h4>Nytt besøk</h4>
+    <p>Før</p>
+    <input type="file" accept="image/*" capture="camera" id="beforeInput">
+    <img id="beforePreview" style="width:100%;border-radius:12px;margin-top:6px;">
+    <p>Etter</p>
+    <input type="file" accept="image/*" capture="camera" id="afterInput">
+    <img id="afterPreview" style="width:100%;border-radius:12px;margin-top:6px;">
+    <textarea id="visitNote" placeholder="Notat (valgfritt)"></textarea>
+    <button class="action" onclick="saveVisit()">💾 Lagre besøk</button>
+  </div>
+</section>
+
+<!-- INFO -->
 <section id="info">
   <div class="card">
     <h3>📍 Finn oss</h3>
@@ -170,56 +182,103 @@ section.active {
   </div>
 </section>
 
+<!-- MENY -->
 <nav class="bottom-nav">
-  <button onclick="show('live', this)" class="active">Live</button>
-  <button onclick="show('prices', this)">Priser</button>
-  <button onclick="show('staff', this)">Ansatte</button>
-  <button onclick="show('game', this)">Spill</button>
-  <button onclick="show('info', this)">Info</button>
+  <button onclick="show('live',this)" class="active">Live</button>
+  <button onclick="show('prices',this)">Priser</button>
+  <button onclick="show('staff',this)">Ansatte</button>
+  <button onclick="show('game',this)">Spill</button>
+  <button onclick="show('journey',this)">Min hårreise</button>
+  <button onclick="show('info',this)">Info</button>
 </nav>
 
 <script>
-function show(id, btn){
+function show(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
   document.getElementById(id)?.classList.add("active");
   btn?.classList.add("active");
 }
 
+/* Spill */
 const icons=["✂️","💇‍♀️","💈","🪮","✂️","💇‍♀️","💈","🪮"];
 let first=null,lock=false,moves=0;
 
 function setupGame(){
-  const board=document.getElementById("gameBoard");
-  if(!board) return;
-  board.innerHTML="";
-  moves=0;
+  const b=document.getElementById("gameBoard");
+  if(!b) return;
+  b.innerHTML="";moves=0;
   document.getElementById("moves").innerText="Trekk: 0";
-  [...icons].sort(()=>0.5-Math.random()).forEach(icon=>{
+  [...icons].sort(()=>0.5-Math.random()).forEach(i=>{
     const c=document.createElement("div");
     c.innerText="❓";
     c.style="padding:18px;font-size:28px;background:#fff;border-radius:12px;text-align:center;cursor:pointer";
-    c.onclick=()=>flip(c,icon);
-    board.appendChild(c);
+    c.onclick=()=>flip(c,i);
+    b.appendChild(c);
   });
 }
 function flip(c,i){
   if(lock||c.innerText!=="❓")return;
   c.innerText=i;
-  if(!first){first=c;}
+  if(!first) first=c;
   else{
     moves++;document.getElementById("moves").innerText="Trekk: "+moves;
     if(first.innerText!==c.innerText){
       lock=true;
-      setTimeout(()=>{first.innerText="❓";c.innerText="❓";first=null;lock=false;},700);
+      setTimeout(()=>{first.innerText=c.innerText="❓";first=null;lock=false;},700);
     } else first=null;
   }
 }
 function resetGame(){setupGame();}
 
+/* Min hårreise */
+let visits=JSON.parse(localStorage.getItem("journeyVisits")||"[]");
+
+function openNewVisit(){
+  document.getElementById("newVisit").style.display="block";
+}
+
+function preview(input,img){
+  const f=input.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=e=>img.src=e.target.result;
+  r.readAsDataURL(f);
+}
+beforeInput?.addEventListener("change",e=>preview(e.target,beforePreview));
+afterInput?.addEventListener("change",e=>preview(e.target,afterPreview));
+
+function saveVisit(){
+  if(!beforePreview.src||!afterPreview.src) return alert("Ta både før- og etterbilde");
+  visits.unshift({
+    date:new Date().toLocaleDateString(),
+    before:beforePreview.src,
+    after:afterPreview.src,
+    note:visitNote.value
+  });
+  localStorage.setItem("journeyVisits",JSON.stringify(visits));
+  newVisit.style.display="none";
+  beforePreview.src=afterPreview.src=visitNote.value="";
+  renderVisits();
+}
+function renderVisits(){
+  journeyList.innerHTML="";
+  visits.forEach(v=>{
+    journeyList.innerHTML+=`
+      <div class="card">
+        <strong>${v.date}</strong>
+        <div style="display:flex;gap:6px;margin-top:6px;">
+          <img src="${v.before}" style="width:50%;border-radius:10px;">
+          <img src="${v.after}" style="width:50%;border-radius:10px;">
+        </div>
+        <p>${v.note||""}</p>
+      </div>`;
+  });
+}
+
 document.addEventListener("DOMContentLoaded",()=>{
   show("live",document.querySelector(".bottom-nav button"));
   setupGame();
+  renderVisits();
   if("serviceWorker"in navigator){
     navigator.serviceWorker.register("sw.js");
   }
@@ -228,3 +287,4 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 </body>
 </html>
+
