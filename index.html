@@ -10,11 +10,18 @@
 
 <style>
 body {
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#FFD1A3,#FF8FB6);
-  padding-bottom:80px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(160deg, #fde6ee, #fff3e4);
+  color: var(--dark);
+  padding-bottom: 120px; /* 🔑 mer luft enn menyen */
 }
+section {
+  position: relative;
+  z-index: 1;
+}
+
 header {
   text-align:center;
   font-size:24px;
@@ -76,16 +83,21 @@ section.active { display:block; }
 
 /* Bunnmeny */
 .bottom-nav {
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:64px;
-  background:#fff;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  border-top:1px solid #ddd;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 76px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #eee;
+
+  z-index: 99999;        /* 🔑 viktig */
+  pointer-events: auto; /* 🔑 viktig */
+}
   z-index:9999;
 }
 .bottom-nav button {
@@ -400,6 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
