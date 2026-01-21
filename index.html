@@ -82,25 +82,15 @@ section.active { display:block; }
 }
 
 /* Bunnmeny */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 76px;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-top: 1px solid #eee;
-
-  z-index: 99999;        /* 🔑 viktig */
-  pointer-events: auto; /* 🔑 viktig */
-}
-  z-index:9999;
-}
-.bottom-nav button {
+<nav class="bottom-nav">
+  <button onclick="show('live', this)" class="active">Live</button>
+  <button onclick="show('prices', this)">Priser</button>
+  <button onclick="show('staff', this)">Ansatte</button>
+  <button onclick="show('offers', this)">Tilbud</button>
+  <button onclick="show('game', this)">Spill</button>
+  <button onclick="show('journey', this)">Min hårreise</button>
+  <button onclick="show('info', this)">Info</button>
+</nav>
   background:none;
   border:none;
   font-size:12px;
@@ -311,12 +301,26 @@ section.active { display:block; }
 
 <script>
 /* MENY */
-function show(id){
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-  document.querySelectorAll(".bottom-nav button").forEach(b => b.classList.remove("active"));
+function show(id, btn){
+  // Skjul alle seksjoner
+  document.querySelectorAll("section").forEach(s => {
+    s.classList.remove("active");
+  });
 
+  // Vis valgt seksjon
   const section = document.getElementById(id);
-  if(section) section.classList.add("active");
+  if(section){
+    section.classList.add("active");
+  }
+
+  // Oppdater aktiv knapp (valgfritt)
+  document.querySelectorAll(".bottom-nav button").forEach(b => {
+    b.classList.remove("active");
+  });
+
+  if(btn){
+    btn.classList.add("active");
+  }
 }
 
 /* HÅR-MATCH */
@@ -412,6 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
