@@ -1,18 +1,11 @@
-﻿self.addEventListener("install", e => {
-  e.waitUntil(
-    caches.open("vibe-cache").then(cache =>
-      cache.addAll([
-        "./",
-        "./index.html",
-        "./manifest.json"
-      ])
-    )
-  );
+self.addEventListener("install", event => {
+  self.skipWaiting();
 });
 
+self.addEventListener("activate", event => {
+  event.waitUntil(self.clients.claim());
+});
 
-self.addEventListener("fetch", e => {
-  e.respondWith(
-    caches.match(e.request).then(res => res || fetch(e.request))
-  );
+self.addEventListener("fetch", event => {
+  event.respondWith(fetch(event.request));
 });
