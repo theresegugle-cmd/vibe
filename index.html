@@ -385,7 +385,11 @@ document.addEventListener("DOMContentLoaded",()=>{
   renderVisits();
 });
 </script>
+  if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
 
 </body>
 </html>
+
 
