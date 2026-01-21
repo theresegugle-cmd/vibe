@@ -302,18 +302,15 @@ section.active { display:block; }
 <script>
 /* MENY */
 function show(id, btn){
-  // Skjul alle seksjoner
   document.querySelectorAll("section").forEach(s => {
     s.classList.remove("active");
   });
 
-  // Vis valgt seksjon
   const section = document.getElementById(id);
   if(section){
     section.classList.add("active");
   }
 
-  // Oppdater aktiv knapp (valgfritt)
   document.querySelectorAll(".bottom-nav button").forEach(b => {
     b.classList.remove("active");
   });
@@ -416,6 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
